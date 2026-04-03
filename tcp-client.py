@@ -1,12 +1,17 @@
 from socket import *
 import dns.resolver
 
+# Set this to match dns server's address and port.
+dnsServerAddress = '127.0.0.1'
+dnsServerPort = 53
+# Change domain name to match DOMAIN in dns-server.py file
+domainName = 'abc.com'
+
+# Resolve domain name
 my_resolver = dns.resolver.Resolver()
-
-my_resolver.nameservers = ['127.0.0.1']
-my_resolver.port = 53
-
-answers = my_resolver.resolve('abc.com', 'A')
+my_resolver.nameservers = [dnsServerAddress]
+my_resolver.port = dnsServerPort
+answers = my_resolver.resolve(domainName, 'A')
 serverName = str(answers[0])
 
 serverPort = 12000

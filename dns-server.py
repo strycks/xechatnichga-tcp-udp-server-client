@@ -1,10 +1,9 @@
 from dnslib import DNSRecord, DNSHeader, RR, A, QTYPE
 from socket import *
 
-# Configuration
-IP_ADDRESS = '127.0.0.1' 
-DOMAIN = 'abc.com.'       
-PORT = 53                 
+# Configuration (CHANGE THIS)
+IP_ADDRESS = '127.0.0.1'  # IP Address of TCP/UDP server
+DOMAIN = 'abc.com.'       # Domain name to be mapped to TCP/UDP server's ip address              
 
 def dns_response(data):
     request = DNSRecord.parse(data)
@@ -21,10 +20,12 @@ def dns_response(data):
     return reply.pack()
 
 
+dnsServerAddress = '127.0.0.1'  # DNS Server Address
+dnsServerPort = 53              # DNS Server Port
 udps = socket(AF_INET, SOCK_DGRAM)
-udps.bind(('127.0.0.1', PORT))
+udps.bind((dnsServerAddress, dnsServerPort))
 
-print(f"DNS Server started on port {PORT}...")
+print(f"DNS Server started on port {dnsServerPort}...")
 
 while True:
     data, addr = udps.recvfrom(1024)
