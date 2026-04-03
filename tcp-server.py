@@ -1,9 +1,10 @@
 from socket import *
 
-serverPort = 25566
+serverPort = 12000
 bufSize = 1024
+serverName = 'localhost'
 serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind(('localhost', serverPort))
+serverSocket.bind((serverName, serverPort))
 serverSocket.listen(1)
 print('Server Initialized')
 while True:
